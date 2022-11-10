@@ -1,28 +1,20 @@
 import React from 'react'
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import Item from './Item';
 
-const List = ({todosList,removeTodo}) => {
+const List = ({todosList,removeTodo,updateTodo}) => {
   const deleteTodo = (id) =>{
     removeTodo(id)
   }
-
-  const todo = todosList.map(todo =>{
-    return(
-      <div key={todo.id} >
-        <CheckBoxIcon color='primary' onClick={()=>{deleteTodo(todo.id)}} >完了</CheckBoxIcon>
-        <span>{todo.content}</span>
-      </div>
-    )
-  })
-
-  
-
 
   return (
     <div>
       <h1>List</h1>
       <div>
-        {todo}
+      {todosList.map(todo =>{
+        return(
+          <Item todo={todo} deleteTodo={deleteTodo} key={todo.id} updateTodo={updateTodo} />
+        )
+      })}
       </div>
     </div>
   )
