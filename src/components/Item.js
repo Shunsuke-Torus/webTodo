@@ -1,8 +1,13 @@
 import React from 'react'
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useState } from 'react';
+import {HStack,IconButton} from "@chakra-ui/react"
+import {CheckIcon} from "@chakra-ui/icons"
 
-const Item = ({todo,deleteTodo,updateTodo}) => {
+import {useDispatchTodos } from '../contexts/TodoContext';
+
+const Item = ({todo}) => {
+  const dispatch = useDispatchTodos()
+
   const [changeValue, setChangeValue] = useState(todo.content)
 
   const changeContent = (e) =>{
@@ -11,7 +16,12 @@ const Item = ({todo,deleteTodo,updateTodo}) => {
 
   const toggleEditMode = () =>{
     const newTodo = {...todo,flag: !todo.flag}
-    updateTodo(newTodo)
+    dispatch(
+      {
+        type: "todo/update",
+        todo: newTodo
+      }
+    )
   }
 
   const confirmContent = (e) =>{
@@ -20,18 +30,30 @@ const Item = ({todo,deleteTodo,updateTodo}) => {
       flag: !todo.flag,
       content: changeValue
     }
-    updateTodo(newTodo)
+    dispatch(
+      {
+        type: "todo/update",
+        todo: newTodo
+      }
+    )
+  }
+
+  const deleteTodo = (todo) =>{
+    dispatch(
+    {
+      type: "todo/remove",
+      todo: todo
+    })
   }
 
   return (
-    <div key={todo.id}>
-      <CheckBoxIcon color='primary' onClick={()=>{deleteTodo(todo.id)}} >完了</CheckBoxIcon>
+    <HStack spacing="6" py="1" key={todo.id}>
+      <IconButton icon={<CheckIcon/>} bg="blue.100" isRound="true" onClick={()=>{deleteTodo(todo)}} >完了</IconButton>
       <form onSubmit={confirmContent} >
       {todo.flag ? (<input type="text" value={changeValue} onChange={(e)=>{changeContent(e)}} />) 
         :(<span onDoubleClick={toggleEditMode} >{todo.content}</span>)}
       </form>
-      
-    </div>
+    </HStack>
   )
 }
 

@@ -1,22 +1,29 @@
 import React from 'react'
+import {VStack,StackDivider,Box} from "@chakra-ui/react"
 import Item from './Item';
+import { useTodos } from '../contexts/TodoContext';
 
-const List = ({todosList,removeTodo,updateTodo}) => {
-  const deleteTodo = (id) =>{
-    removeTodo(id)
-  }
+const List = () => {
+
+  const todosList = useTodos()
 
   return (
-    <div>
-      <h1>List</h1>
-      <div>
+    <VStack 
+      divider={<StackDivider/>}
+      borderWidth ="1px"
+      borderRadius="50px"
+      p={10}
+      alignItems="start"
+      boxShadow='md'
+    >
+      <Box>
       {todosList.map(todo =>{
         return(
-          <Item todo={todo} deleteTodo={deleteTodo} key={todo.id} updateTodo={updateTodo} />
+          <Item todo={todo} key={todo.id} />
         )
       })}
-      </div>
-    </div>
+      </Box>
+    </VStack>
   )
 }
 
