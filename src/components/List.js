@@ -1,30 +1,29 @@
 import React from 'react'
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import {VStack,StackDivider,Box} from "@chakra-ui/react"
+import Item from './Item';
+import { useTodos } from '../contexts/TodoContext';
 
-const List = ({todosList,removeTodo}) => {
-  const deleteTodo = (id) =>{
-    removeTodo(id)
-  }
+const List = () => {
 
-  const todo = todosList.map(todo =>{
-    return(
-      <div key={todo.id} >
-        <CheckBoxIcon color='primary' onClick={()=>{deleteTodo(todo.id)}} >完了</CheckBoxIcon>
-        <span>{todo.content}</span>
-      </div>
-    )
-  })
-
-  
-
+  const todosList = useTodos()
 
   return (
-    <div>
-      <h1>List</h1>
-      <div>
-        {todo}
-      </div>
-    </div>
+    <VStack 
+      divider={<StackDivider/>}
+      borderWidth ="1px"
+      borderRadius="50px"
+      p={10}
+      alignItems="start"
+      boxShadow='md'
+    >
+      <Box>
+      {todosList.map(todo =>{
+        return(
+          <Item todo={todo} key={todo.id} />
+        )
+      })}
+      </Box>
+    </VStack>
   )
 }
 
