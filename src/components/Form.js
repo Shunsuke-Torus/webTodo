@@ -29,7 +29,7 @@ const Form = () => {
       <Center py="10" >
         <form onSubmit ={addTodo}>
           <Input width='auto' type="text" value={inputVal} onChange={(e)=>{setInputVal(e.target.value)}} />
-          <IconButton isRound="true" bg="blue.200" icon={<AddIcon/>} onClick={addTodo}>タスクの追加</IconButton>
+          <IconButton isRound="true" bg="blue.200" icon={<AddIcon/>} onClick={addTodo}/>
         </form>
       </Center>
       
