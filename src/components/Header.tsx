@@ -1,6 +1,5 @@
-import React from 'react'
 import { Box,Flex,Stack,Heading} from '@chakra-ui/react'
-const Heder = () => {
+const Header = () => {
   return (
     <Box px="10" py="5" bg="blue.400" color='black' >
       <Flex>
@@ -14,4 +13,4 @@ const Heder = () => {
   )
 }
 
-export default Heder
+export default Header
