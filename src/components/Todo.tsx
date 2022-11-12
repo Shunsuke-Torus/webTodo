@@ -1,9 +1,7 @@
-import React from 'react'
-import { Box } from "@chakra-ui/react"
 import List from './List'
 import Form from './Form'
 import { TodoProvider } from '../contexts/TodoContext'
-import Heder from './Heder'
+import Heder from './Header'
 
 const Todo = () => {
   return (
