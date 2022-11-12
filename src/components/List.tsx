@@ -1,9 +1,9 @@
-import React from 'react'
 import {VStack,StackDivider,Box} from "@chakra-ui/react"
 import Item from './Item';
-import { useTodos } from '../contexts/TodoContext';
+import { useTodos} from '../contexts/TodoContext';
+import React from "react";
 
-const List = () => {
+const List:React.FC= () => {
 
   const todosList = useTodos()
 
@@ -17,11 +17,11 @@ const List = () => {
       boxShadow='md'
     >
       <Box>
-      {todosList.map(todo =>{
-        return(
-          <Item todo={todo} key={todo.id} />
-        )
-      })}
+        {todosList.map((todo)=>{
+          return(
+            <Item todo={todo} key={todo.id} />
+          )
+        })}
       </Box>
     </VStack>
   )
